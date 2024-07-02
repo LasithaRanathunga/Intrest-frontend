@@ -1,8 +1,16 @@
-# React + Vite
+# Installation Details
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1) clone this repository
 
-Currently, two official plugins are available:
+2) clone the ExpressJs backend from the below repository
+   https://github.com/LasithaRanathunga/Intrest-backend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3) open your MySQL workbench, create a new connection, and name it as intrest
+
+4) go to the directory where you cloned the backend, open the terminal and do the Prisma migration using the following command
+   npx prisma migrate dev --name users_model_added
+
+5) run the following command to start the backend server (this start the nodejs server at port:3000)
+
+6) go to the directry where you cloned the frontend, open the terminal and run the following comand to start the frontend (this will start the react droontend at post:5173)
+
