@@ -2,6 +2,7 @@ import SectionContainer from "../../sectionContainder/SectionContainer";
 import { Avatar, Button, Image } from "@nextui-org/react";
 import { FaImages } from "react-icons/fa6";
 import { BsSendFill } from "react-icons/bs";
+import { MdOutlineClear } from "react-icons/md";
 import { useRef, useState } from "react";
 
 export default function NewPost({ profile }) {
@@ -27,6 +28,11 @@ export default function NewPost({ profile }) {
       };
       reader.readAsDataURL(file);
     }
+  }
+
+  function clear() {
+    setImage(null);
+    setContent("");
   }
 
   function submit() {
@@ -85,6 +91,16 @@ export default function NewPost({ profile }) {
               />
             ) : null}
           </div>
+          <Button
+            variant="light"
+            isIconOnly
+            className="cursor-pointer p-6 shrink-0 self-start"
+            onClick={clear}
+          >
+            <label>
+              <MdOutlineClear className="text-3xl" />
+            </label>
+          </Button>
           <Button
             variant="light"
             isIconOnly
