@@ -6,7 +6,6 @@ import Post from "../ui/mainFeed/post/Post";
 import SidebarGroupList from "../ui/sidebar/sidebarGroupList/SidebarGroupList";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-//import { Buffer } from "buffer";
 
 export default function Home() {
   const data = useLoaderData();
@@ -20,8 +19,8 @@ export default function Home() {
   }, [data, navigate]);
 
   return (
-    <div className="grid grid-cols-12 gap-4 bg-transparent p-4">
-      <div className="col-start-1 col-end-3 h-dvh overflow-auto">
+    <div className="grid grid-cols-12 gap-4 bg-transparent p-4 h-screen">
+      <div className="col-start-1 col-end-3 h-full overflow-auto ">
         <HomeInfo
           profile={data.profile}
           cover={data.cover}
@@ -32,11 +31,21 @@ export default function Home() {
           <SidebarSection />
         </SectionContainer>
       </div>
-      <div className="col-start-3 col-end-11">
-        <NewPost />
-        <Post />
+      <div className="col-start-3 col-end-11 h-full overflow-auto">
+        <NewPost profile={data.profile} />
+        {/* <Post /> */}
+        {data.posts.map((post) => {
+          return (
+            <Post
+              key={post.id}
+              content={post.content}
+              image={post.image}
+              postedAt={post.postedAt}
+            />
+          );
+        })}
       </div>
-      <div className="col-start-11 col-end-13 h-dvh overflow-auto">
+      <div className="col-start-11 col-end-13 h-full overflow-auto">
         <SidebarGroupList />
       </div>
     </div>
