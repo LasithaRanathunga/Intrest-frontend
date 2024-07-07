@@ -8,7 +8,7 @@ export default function SidebarSection() {
   return (
     <section className="p-4 ">
       <h3 className="text-xl font-semibold mb-6">Main Menu</h3>
-      <SidebarLink Icon={PiStackBold} title="Feed" to="/home" />
+      <SidebarLink Icon={PiStackBold} title="Feed" to="/" />
       <SidebarLink Icon={PiChatsCircleBold} title="Messages" to="/messages" />
       <SidebarLink Icon={GrGroup} title="Groups" to="/groups" />
 

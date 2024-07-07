@@ -92,6 +92,7 @@ export default function SignIn() {
         if (data.token && data.status == "success") {
           localStorage.setItem("token", data.token);
         }
+
         navigate("/welcome", { state: { ...data } });
       });
   };

@@ -4,12 +4,15 @@ import { FaImages } from "react-icons/fa6";
 import { BsSendFill } from "react-icons/bs";
 import { MdOutlineClear } from "react-icons/md";
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function NewPost({ profile }) {
   const textareaRef = useRef(null);
 
   const [image, setImage] = useState(null);
   const [content, setContent] = useState("");
+
+  const navigate = useNavigate();
 
   const handleInput = () => {
     if (textareaRef.current) {
@@ -56,6 +59,8 @@ export default function NewPost({ profile }) {
         setImage(null);
         setContent("");
         console.log(res);
+        navigate("/");
+        textareaRef.current.scrollHeight = 44;
       })
       .catch((err) => console.log("Error occured", err));
   }
@@ -63,19 +68,15 @@ export default function NewPost({ profile }) {
   return (
     <SectionContainer>
       <div className="p-4 flex items-center w-full">
-        <Avatar
-          className="shrink-0 self-start"
-          src={`data:image/jpeg;base64,${profile}`}
-          size="lg"
-        />
-        <form className="flex items-center justify-between  grow">
+        <Avatar className="shrink-0 self-start" src={profile} size="lg" />
+        <form className="flex items-center justify-between grow">
           <div className="grow">
             <textarea
               // className="text-xl ml-4 outline-none grow resize"
               // placeholder="What's New?"
               // wrap="soft"
               ref={textareaRef}
-              className="text-xl ml-4 outline-none  resize-none overflow-hidden p-2"
+              className="text-xl ml-4 outline-none  resize-none overflow-hidden p-2 w-full mr-4"
               placeholder="What's New?"
               rows="1"
               onInput={handleInput}

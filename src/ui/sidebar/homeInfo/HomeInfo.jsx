@@ -3,7 +3,7 @@ import SidebarSectionContainer from "../../sectionContainder/SectionContainer";
 
 export default function HomeInfo({ profile, cover, name, discription }) {
   const bgCss = {
-    backgroundImage: `url(data:image/jpeg;base64,${cover})`,
+    backgroundImage: `url(${cover})`,
   };
 
   return (
@@ -12,7 +12,7 @@ export default function HomeInfo({ profile, cover, name, discription }) {
 
       <div className="flex flex-col justify-center">
         <Avatar
-          src={`data:image/jpeg;base64,${profile}`}
+          src={profile}
           className="w-24 h-24 text-large m-auto -translate-y-2/4"
         />
         <h2 className="text-center -mt-7 mb-12 font-bold text-3xl">{name}</h2>

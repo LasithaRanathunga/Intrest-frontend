@@ -14,8 +14,8 @@ export default function Welcome() {
   );
   const [discription, setDiscription] = useState("");
 
-  const [profileFile, setProfileFile] = useState();
-  const [coverFile, setCoverFile] = useState();
+  // const [profileFile, setProfileFile] = useState();
+  // const [coverFile, setCoverFile] = useState();
 
   const data = useLocation().state;
 
@@ -42,8 +42,8 @@ export default function Welcome() {
     formData.append("discription", discription);
     formData.append("id", data.id);
 
-    formData.append("files", profileFile);
-    formData.append("files", coverFile);
+    formData.append("files", profile);
+    formData.append("files", cover);
 
     const token = localStorage.getItem("token");
     fetch("http://localhost:3000/updateUser", {
@@ -104,7 +104,7 @@ export default function Welcome() {
                 id="profile"
                 onChange={(e) => {
                   handleImageSelect(e, setProfile);
-                  setProfileFile(e.target.files?.[0]);
+                  // setProfileFile(e.target.files?.[0]);
                 }}
               />
             </Button>
@@ -117,7 +117,7 @@ export default function Welcome() {
                 id="cover"
                 onChange={(e) => {
                   handleImageSelect(e, setCover);
-                  setCoverFile(e.target.files?.[0]);
+                  // setCoverFile(e.target.files?.[0]);
                 }}
               />
             </Button>
