@@ -8,11 +8,11 @@ export default function SidebarSection() {
   return (
     <section className="p-4 ">
       <h3 className="text-xl font-semibold mb-6">Main Menu</h3>
-      <SidebarLink Icon={PiStackBold} title="Feed" />
-      <SidebarLink Icon={PiChatsCircleBold} title="Messages" />
-      <SidebarLink Icon={GrGroup} title="Groups" />
+      <SidebarLink Icon={PiStackBold} title="Feed" to="/home" />
+      <SidebarLink Icon={PiChatsCircleBold} title="Messages" to="/messages" />
+      <SidebarLink Icon={GrGroup} title="Groups" to="/groups" />
 
-      <SidebarLink Icon={MdOutlineSettings} title="Settings" />
+      <SidebarLink Icon={MdOutlineSettings} title="Settings" to="/settings" />
     </section>
   );
 }
