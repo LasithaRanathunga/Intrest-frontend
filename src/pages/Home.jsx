@@ -1,10 +1,8 @@
 import HomeInfo from "../ui/sidebar/homeInfo/HomeInfo";
 import SectionContainer from "../ui/sectionContainder/SectionContainer";
 import SidebarSection from "../ui/sidebar/sidebarSection/SidebarSection";
-import NewPost from "../ui/mainFeed/newPost/NewPost";
-import Post from "../ui/mainFeed/post/Post";
 import SidebarGroupList from "../ui/sidebar/sidebarGroupList/SidebarGroupList";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Outlet, useLoaderData, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function Home() {
@@ -32,18 +30,7 @@ export default function Home() {
         </SectionContainer>
       </div>
       <div className="col-start-3 col-end-11 h-full overflow-auto">
-        <NewPost profile={data.profile} />
-        {/* <Post /> */}
-        {data.posts.map((post) => {
-          return (
-            <Post
-              key={post.id}
-              content={post.content}
-              image={post.image}
-              postedAt={post.postedAt}
-            />
-          );
-        })}
+        <Outlet context={[data]} />
       </div>
       <div className="col-start-11 col-end-13 h-full overflow-auto">
         <SidebarGroupList />
