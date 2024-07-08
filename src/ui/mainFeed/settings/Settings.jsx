@@ -13,6 +13,7 @@ export default function Settings() {
 
   const [fname, setFname] = useState(data.fname);
   const [lname, setLname] = useState(data.lname);
+  const [nameError, setNameError] = useState(null);
 
   const [profile, setProfile] = useState(data.profile);
   const [cover, setCover] = useState(data.cover);
@@ -24,6 +25,11 @@ export default function Settings() {
   const [discription, setDiscription] = useState(data.discription);
 
   function submit() {
+    if (fname.trim().length == 0 || lname.trim().length) {
+      setNameError("Both First Name and Last Name should not be empty");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("fname", fname);
     formData.append("lname", lname);
@@ -89,6 +95,9 @@ export default function Settings() {
             onChange={(e) => setLname(e.target.value)}
             className="max-w-xl mt-6"
           />
+          {nameError ? (
+            <p className="text-red-600 mt-4 ml-2">{nameError}</p>
+          ) : null}
         </div>
       </SectionContainer>
       <SectionContainer>
