@@ -87,6 +87,8 @@ export default function Settings() {
             value={fname}
             onChange={(e) => setFname(e.target.value)}
             className="max-w-xl"
+            isInvalid={fname.length > 0 ? false : true}
+            errorMessage="Please enter a valid name"
           />
           <Input
             type="text"
@@ -94,6 +96,8 @@ export default function Settings() {
             value={lname}
             onChange={(e) => setLname(e.target.value)}
             className="max-w-xl mt-6"
+            isInvalid={lname.length > 0 ? false : true}
+            errorMessage="Please enter a valid name"
           />
           {nameError ? (
             <p className="text-red-600 mt-4 ml-2">{nameError}</p>
@@ -154,7 +158,7 @@ export default function Settings() {
           </div>
         </div>
       </SectionContainer>
-      <div className="flex justify-end px-4 w-11/12 mx-auto">
+      <div className="flex justify-end px-4 w-11/12 mx-auto mb-6">
         <Button
           className="text-xl"
           color="primary"
