@@ -1,5 +1,6 @@
 import { Avatar, Divider, Button } from "@nextui-org/react";
 import SidebarSectionContainer from "../../sectionContainder/SectionContainer";
+import { Link } from "react-router-dom";
 
 export default function HomeInfo({ profile, cover, name, discription }) {
   const bgCss = {
@@ -20,14 +21,11 @@ export default function HomeInfo({ profile, cover, name, discription }) {
           {discription}
         </p>
         <Divider className="my-4" />
-        <Button
-          color="primary"
-          variant="light"
-          size="lg"
-          className="text-xl m-auto mb-4"
-        >
-          My Profile
-        </Button>
+        <Link to="/profile" className=" m-auto mb-4">
+          <Button color="primary" variant="light" size="lg" className="text-xl">
+            My Profile
+          </Button>
+        </Link>
       </div>
     </SidebarSectionContainer>
   );

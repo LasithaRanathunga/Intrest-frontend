@@ -9,10 +9,19 @@ import Welcome from "./pages/Welcome";
 
 import Feed from "./ui/mainFeed/feed/Feed";
 import Settings from "./ui/mainFeed/settings/Settings";
+import Profile from "./ui/mainFeed/profile/Profile";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navigate to="/feed" />,
+  },
   {
     path: "/",
     loader: homeLoader,
@@ -20,6 +29,7 @@ const router = createBrowserRouter([
     children: [
       { path: "feed", element: <Feed /> },
       { path: "settings", element: <Settings /> },
+      { path: "profile", element: <Profile /> },
     ],
   },
   {

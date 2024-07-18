@@ -1,5 +1,6 @@
 import { useNavigate, useOutletContext } from "react-router-dom";
-
+import { FaRegEye } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa6";
 import { Divider } from "@nextui-org/divider";
 import { Input, Textarea } from "@nextui-org/input";
 import { Avatar, Button } from "@nextui-org/react";
@@ -24,7 +25,7 @@ export default function Settings() {
 
   const [discription, setDiscription] = useState(data.discription);
 
-  function submit() {
+  function changeInfo() {
     if (fname.trim().length == 0 || lname.trim().length) {
       setNameError("Both First Name and Last Name should not be empty");
       return;
@@ -49,7 +50,7 @@ export default function Settings() {
       //   "Content-Type": "multipart/form-data",
       // },
     })
-      .then((res) => {
+      .then(() => {
         return navigate("/settings");
       })
       .catch((err) => console.log("Error occured", err));
@@ -66,11 +67,27 @@ export default function Settings() {
     }
   };
 
+  //Setting passwords
+
+  const [isVisibleOld, setIsVisibleOld] = useState(false);
+  const [isVisibleNew, setIsVisibleNew] = useState(false);
+  const [isVisibleCon, setIsVisibleCon] = useState(false);
+
+  const toggleVisibility = (field) => {
+    if (field == "old") {
+      setIsVisibleOld(!isVisibleOld);
+    } else if (field == "new") {
+      setIsVisibleNew(!isVisibleNew);
+    } else if (field == "con") {
+      setIsVisibleCon(!isVisibleCon);
+    }
+  };
+
   return (
     <div>
       <SectionContainer>
         <div className="p-4">
-          <h4 className="text-2xl font-bold">Username</h4>
+          <h4 className="text-2xl font-bold">Email</h4>
           <Divider className="my-2" />
           <p className="cursor-not-allowed text-xl text-gray-500">
             {data.email}
@@ -163,11 +180,77 @@ export default function Settings() {
           className="text-xl"
           color="primary"
           isLoading={false}
-          onClick={submit}
+          onClick={changeInfo}
         >
           Save
         </Button>
       </div>
+      <SectionContainer>
+        <div className="p-4">
+          <h4 className="text-2xl font-bold">Change Password</h4>
+          <Divider className="my-2" />
+          <Input
+            label="Old Password"
+            placeholder="Enter old password"
+            endContent={
+              <button
+                className="focus:outline-none"
+                type="button"
+                onClick={() => toggleVisibility("old")}
+              >
+                {isVisibleOld ? (
+                  <FaRegEyeSlash className="text-2xl text-default-400 pointer-events-none" />
+                ) : (
+                  <FaRegEye className="text-2xl text-default-400 pointer-events-none" />
+                )}
+              </button>
+            }
+            type={isVisibleOld ? "text" : "password"}
+            className="max-w-xl"
+          />
+          <Input
+            label="New Password"
+            placeholder="Enter new password"
+            endContent={
+              <button
+                className="focus:outline-none"
+                type="button"
+                onClick={() => toggleVisibility("new")}
+              >
+                {isVisibleNew ? (
+                  <FaRegEyeSlash className="text-2xl text-default-400 pointer-events-none" />
+                ) : (
+                  <FaRegEye className="text-2xl text-default-400 pointer-events-none" />
+                )}
+              </button>
+            }
+            type={isVisibleNew ? "text" : "password"}
+            className="max-w-xl py-4"
+          />
+          <Input
+            label="Confirm  Password"
+            placeholder="Confirm new password"
+            endContent={
+              <button
+                className="focus:outline-none"
+                type="button"
+                onClick={() => toggleVisibility("con")}
+              >
+                {isVisibleCon ? (
+                  <FaRegEyeSlash className="text-2xl text-default-400 pointer-events-none" />
+                ) : (
+                  <FaRegEye className="text-2xl text-default-400 pointer-events-none" />
+                )}
+              </button>
+            }
+            type={isVisibleCon ? "text" : "password"}
+            className="max-w-xl"
+          />
+          <Button className="text-xl mt-4" color="primary" isLoading={false}>
+            Change Password
+          </Button>
+        </div>
+      </SectionContainer>
     </div>
   );
 }
